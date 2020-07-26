@@ -24,7 +24,36 @@ class LinkedList:
 
     def is_empty(self):
         return self.head is None
-
+    
+    def get(self, index):
+        if (index < 0 or index >= self.size) or self.head is None:
+            return None
+        
+        temp = self.head
+        while index > 0:
+            temp = temp.next
+            index -= 1
+            
+        return temp.item
+    
+    def add_to_end(self, item):
+        if self.head is None:
+            self.head = Node(item, self.head)
+        else:
+            temp = self.head
+            while not temp.next is None:
+                temp = temp.next
+                
+            temp.next = Node(item, None)
+            
+    def to_list(self):
+        arr = []
+        temp = self.head
+        while not temp is None:
+            arr.append(temp.item)
+            
+        return arr
+                
     def __len__(self):
         """
         >>> linked_list = LinkedList()
